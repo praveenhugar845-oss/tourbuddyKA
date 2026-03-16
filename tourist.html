@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> TourBuddyKA  🌎</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .chat-container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      width: 400px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-header {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 20px 20px 0 0;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      color: white;
+    }
+
+    .bot-message, .user-message {
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 15px;
+      width: fit-content;
+      max-width: 80%;
+    }
+
+    .bot-message {
+      background: rgba(0, 0, 0, 0.5);
+      align-self: flex-start;
+    }
+
+    .user-message {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      align-self: flex-end;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    .chat-input button {
+      background: #0078ff;
+      color: white;
+      border: none;
+      margin-left: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .chat-input button:hover {
+      background: #005ad6;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🌎 TourBuddyKA</div>
+    <div class="chat-box" id="chatBox">
+      <div class="bot-message">Hello! I'm your its27Tech <br>What to do you  want to know about?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your question..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === "") return;
+
+      // Display user message
+      const userDiv = document.createElement("div");
+      userDiv.classList.add("user-message");
+      userDiv.innerText = message;
+      chatBox.appendChild(userDiv);
+      userInput.value = "";
+
+      // Scroll down
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Generate bot response
+      setTimeout(() => {
+        const botDiv = document.createElement("div");
+        botDiv.classList.add("bot-message");
+        botDiv.innerText = getBotResponse(message);
+        chatBox.appendChild(botDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 600);
+    }
+
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+
+      if (input.includes("hi") || input.includes("hello"))
+        return "Hello traveler! 👋 How can I help you ?";
+      
+        if (input.includes("best place in belagavi"))
+        return "suvarna soudha(8km)\n kamal basti(0.5km)\n Gokak falls(42km)\nYallur fort(10km)\n Godachinmalki falls(45km)\n Hidkal dam(33.3km)\n Fort lake(100m)\n kittur fort(37km)\n Belagavi fort(4.6km),"
+         
+        if (input.includes("suvarna soudha"))
+         return "The Suvarna Vidhana Soudha in Belagavi is a grand and majestic building that serves as the second legislative house of Karnataka. Inaugurated in 2012, it showcases stunning neo-Dravidian architecture similar to Bengaluru’s Vidhana Soudha. Located on the Belagavi–Pune highway, the palace-like structure is beautifully illuminated at night, making it a popular tourist attraction. Surrounded by scenic greenery, it offers visitors a glimpse of Karnataka’s political significance and architectural excellence.";
+   
+        if (input.includes("kamal basti"))
+        return "The Kamala Basti in Belagavi is a beautiful 13th-century Jain temple located inside the Belagavi Fort. Built during the rule of the Ratta dynasty, it is dedicated to Neminatha, the 22nd Tirthankara of Jainism. The temple is known for its elegant architecture, intricate carvings, and peaceful surroundings. With its stone pillars and lotus-shaped dome, Kamala Basti is a serene spot that attracts both history lovers and spiritual tourists visiting Belagavi.";
+
+        if (input.includes("yallur fort"))
+        return "The Yallur Fort, located about 8 km from Belagavi, is an ancient hill fort known for its historical significance and scenic views. Built during the rule of the Ratta dynasty and later strengthened by the Marathas, the fort offers a glimpse into the region’s rich past. Surrounded by lush greenery, it also houses a temple dedicated to Lord Shiva, attracting both history enthusiasts and devotees. The fort’s elevated position provides a beautiful panoramic view of Belagavi and its countryside, making it a peaceful and picturesque spot for tourists.";
+
+        if (input.includes("godachinmalki"))
+        return "The Godachinmalki Falls, located near Gokak in the Belagavi district, is one of Karnataka most scenic waterfalls. Formed by the Markandeya River, the water cascades in two beautiful stages from a height of about 25 meters, surrounded by lush green hills and rocky cliffs. Often called the “mini Niagara of Karnataka”, it’s a perfect spot for nature lovers, photographers, and trekkers. The best time to visit is during the monsoon season, when the falls are at their most spectacular and the surrounding landscape turns vibrant and green.";
+
+        if (input.includes("tourist place in mysore"))
+        return "Mysore palace\n Chamundi Hills\n Mysore Zoo\n Brundhavan Garden\n chamarajendra zooligical garden\n lalith mahal\n karanji lake and nature park "
+        
+        if (input.includes("beaches in karnataka"))
+      return "malpe(udapi)\n om(gokarna)\n panambur(mangaluru)\n devbagh(karwar)\n";
+      if (input.includes("karnataka"))
+        return "best place of karnataka:\n mysore palace\nhampi\ngolagumbaz\ngokak falls\ndharmastala\nudapi\ndandeli\njog falls\ngokarna\nbadami\nmuradeswara";
+     
+        if (input.includes("mysore palace"))
+      return "Mysuru Palace, also known as Amba Vilas Palace, is a royal residence located in Mysuru, Karnataka, India. It was built in the early 20th century for the Wodeyar dynasty, who ruled the Kingdom of Mysore. The palace is famous for its grand architecture, which blends Hindu, Mughal, Rajput, and Gothic styles. It is beautifully illuminated with thousands of lights every evening and is one of the most visited tourist attractions in India.";
+     
+      if (input.includes("hampi"))
+      return "Hampi is a UNESCO World Heritage Site located in Karnataka, India. It was the capital of the Vijayanagara Empire in the 14th century and is famous for its magnificent temples, palaces, and ancient market streets. The ruins of Hampi spread across a vast area along the Tungabhadra River, showcasing stunning examples of Dravidian architecture and rich cultural heritage.";
+          
+      if (input.includes("golagumbaz"))
+          return "Gol Gumbaz is a famous monument located in Bijapur (Vijayapura), Karnataka. It is the mausoleum of Sultan Mohammed Adil Shah, built in the 17th century. The structure is known for its massive dome, which is one of the largest in the world and has a unique whispering gallery where even the smallest sound echoes multiple times.";
+   
+          if (input.includes("dharmastala"))
+    return "Dharmasthala is a famous pilgrimage town in Karnataka, known for the Sri Manjunatha Temple, dedicated to Lord Shiva. It is unique because the temple is managed by a Jain family, while Hindu rituals are performed by Brahmin priests, symbolizing religious harmony. Dharmasthala is also known for its charitable activities and free community services like food and education.";
+ 
+    if (input.includes("jog falls"))
+    return "Jog Falls, located in Shivamogga district, Karnataka, is one of the highest waterfalls in India. Formed by the Sharavathi River, the water cascades down from a height of about 830 feet (253 meters) in four distinct streams — Raja, Rani, Roarer, and Rocket. It is a major tourist attraction known for its breathtaking beauty, especially during the monsoon season.";
+
+    if (input.includes("Gokak falls"))
+    return "Gokak Falls is a beautiful waterfall located near Belagavi (Belgaum), Karnataka. The Ghataprabha River plunges from a height of about 52 meters over a sandstone cliff, resembling the Niagara Falls in shape. The area is surrounded by scenic landscapes, with an old hanging bridge and historic temples, making it a popular tourist attraction.";
+    
+   
+
+      if (input.includes("bye"))
+        return "👋 have a Safe journey! Come back soon!";
+      if (input.includes("population of india"))
+        return "🇮🇳 India's population is approximately 143 crore (1.43 billion).";
+
+      return "🤔 Hmm, I’m not sure about that, but I can help with famous tourist places, weather info, or travel tips!";
+    }
+  </script>
+</body>
+</html>
